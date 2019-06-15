@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input v-model="username">
+        <input type="password" v-model="password">
+        <button @click="pokusajLogin()">Log in</button>
+    </div>
+    <script>
+        var mojVue = new Vue({
+            el: '#app',
+            data: function(){
+                return {
+                username: "",
+                password: ""
+            }
+        },
+        methods: {
+            pokusajLogin(){
+                axios.post('http://localhost:3000/login',
+            {
+                username: this.username,
+                password: this.password
+            }).then((response) => {
+                console.log(response.data);
+                })
+            }
+        }
+    })
+    </script>
+</body>
+</html>
